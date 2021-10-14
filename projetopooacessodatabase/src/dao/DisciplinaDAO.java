@@ -50,6 +50,62 @@ public class DisciplinaDAO {
     }
 
     
+    public void alterar(Disciplina disciplina) {
+        
+        Connection con = Conexao.getConexao();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE disciplina SET nome = ? , datainclusao = ? where id = ? ");
+           
+            stmt.setString(1, disciplina.getNome());
+
+            stmt.setString(2, disciplina.getDataInclusao());
+            
+            stmt.setInt(3, disciplina.getId());    
+            
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+            //  throw new RuntimeException("Erro ao inserir informação no banco de dados");
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+
+        }
+
+    }
+
+    
+    
+    
+    public void excluir(Disciplina disciplina) {
+        
+        Connection con = Conexao.getConexao();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("DELETE from disciplina WHERE id = ?");
+           
+            stmt.setInt(1, disciplina.getId());
+            
+            
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+            //  throw new RuntimeException("Erro ao inserir informação no banco de dados");
+        } finally {
+            Conexao.fecharConexao(con, stmt);
+
+        }
+
+    }
+
+    
+    
    public List<Disciplina> consulta(){
        Connection con = Conexao.getConexao();
        PreparedStatement stmt = null;

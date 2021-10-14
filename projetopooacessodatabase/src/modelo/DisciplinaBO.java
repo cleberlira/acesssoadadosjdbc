@@ -53,7 +53,33 @@ public class DisciplinaBO {
         
     }
     
+     public void excluir(Disciplina disciplina){
+        
+        DisciplinaDAO dao = new DisciplinaDAO();
+        
+        try{
+        
+            dao.excluir(disciplina);
+        
+        }catch(Exception e){
+            throw new RuntimeException("Erro ao excluir a informação no banco de dados");
+        }
+        
+    }
     
+    public void alterar(Disciplina disciplina){
+        
+        DisciplinaDAO dao = new DisciplinaDAO();
+        
+        try{
+        
+            dao.alterar(disciplina);
+        
+        }catch(Exception e){
+            throw new RuntimeException("Erro ao alterar a informação no banco de dados");
+        }
+        
+    }
     
     
 }
